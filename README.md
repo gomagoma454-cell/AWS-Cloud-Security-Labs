@@ -8,12 +8,12 @@ A collection of hands-on labs and documentation focusing on AWS penetration test
 
 ---
 
-## 🛑 Project Overview
+## Project Overview
 This project demonstrates how attackers find and map hidden assets inside Amazon Web Services (AWS). Using a low-privilege user account, I scanned the cloud environment, found misconfigured access controls, and used an advanced tool to safely extract a hidden AWS Organization ID from a storage bucket.
 
 ---
 
-## 🛠️ Phase 1: Checking the Environment & Identity
+## Phase 1: Checking the Environment & Identity
 
 1.  **Setting Up the AWS CLI:** Installed the official AWS Command Line Interface (CLI) and checked the version to make sure it was fully updated.
 2.  **Configuring Access:** Logged into the target environment using an Access Key and a Secret Key. Locked the region to `us-east-1` because the lab infrastructure only responds to this specific area.
@@ -22,7 +22,7 @@ This project demonstrates how attackers find and map hidden assets inside Amazon
 
 ---
 
-## 🔑 Phase 2: Finding Weak Permissions (IAM Scanning)
+## Phase 2: Finding Weak Permissions (IAM Scanning)
 
 *   **Handling Access Errors:** When I tried to run major administrative commands, the system blocked me with an `AccessDenied` error. This told me exactly where the security walls were built.
 *   **Finding Other Users:** Ran `aws iam list-users` to see who else was in the system. I successfully discovered a second user named **Mary**.
@@ -33,7 +33,7 @@ This project demonstrates how attackers find and map hidden assets inside Amazon
 
 ---
 
-## 🎯 Phase 3: Smart Data Extraction (S3 Bucket Exploit)
+## Phase 3: Smart Data Extraction (S3 Bucket Exploit)
 
 Instead of trying billions of random guesses to find the secret **AWS Organization ID** (which takes too long and makes too much noise), I used a smarter method:
 
@@ -43,7 +43,7 @@ Instead of trying billions of random guesses to find the secret **AWS Organizati
 
 ---
 
-## 🛡️ Key Security Fixes (Blue Team Recommendations)
+## Key Security Fixes (Blue Team Recommendations)
 
 To protect a real company from these types of scans, I recommend three rules:
 1.  **Use Least Privilege:** Never use wildcards (`*`) in security policies. Only give users access to the exact tools they need to do their jobs.
