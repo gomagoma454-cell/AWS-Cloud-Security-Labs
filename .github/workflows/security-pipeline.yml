@@ -1,0 +1,28 @@
+name: DevSecOps Automated Scanner
+
+# 1. When should this pipeline run?
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# 2. What jobs should it execute?
+jobs:
+  checkov-sast-scan:
+    name: Checkov Infrastructure Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step A: Pull the code from the repository into the runner VM
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step B: Run the Checkov Action against our Terraform files
+      - name: Run Checkov Security Scan
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: .
+          skip_path: venv
+          framework: terraform
+
