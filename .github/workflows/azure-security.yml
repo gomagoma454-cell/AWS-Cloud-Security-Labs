@@ -1,0 +1,20 @@
+name: Azure DevSecOps Automated Scanner
+
+on:
+  push:
+    branches: [ "azure-infra" ]
+  pull_request:
+    branches: [ "azure-infra" ]
+
+jobs:
+  checkov-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Run Checkov Review
+        uses: bridgecrewio/checkov-action@master
+        with:
+          framework: terraform
+          output_format: cli
